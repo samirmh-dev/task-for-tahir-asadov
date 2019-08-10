@@ -24,7 +24,7 @@ class FlightsController extends Controller
      */
     public function create()
     {
-        //
+        return view('flights/create');
     }
 
     /**
@@ -35,7 +35,21 @@ class FlightsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $data = $request->validate([
+            'company' => 'required|max:255',
+            'plane' => 'required|max:255',
+            'arrival' => 'required|date',
+            'price' => 'required|numeric',
+            'from' => 'required|max:255',
+            'to' => 'required|max:255',
+            'passenger' => 'required|numeric',
+            'description' => 'required|max:2048',
+        ]);
+
+        Flight::create($data);
+
+        return redirect('flights')->with('status', 'Ucus elave edildi!');
     }
 
     /**
