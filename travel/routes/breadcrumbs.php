@@ -34,3 +34,30 @@ Breadcrumbs::for('flights.edit', function ($trail, $flight) {
     $trail->parent('flights.index');
     $trail->push('Redaktə', route('flights.edit', $flight->id));
 });
+
+
+
+
+// Home > Hotels
+Breadcrumbs::for('hotels', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Otellər', route('hotels'));
+});
+
+// Home > Hotels
+Breadcrumbs::for('hotels.index', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Otellər', route('hotels.index'));
+});
+
+// Home > Hotels > Create
+Breadcrumbs::for('hotels.create', function ($trail) {
+    $trail->parent('hotels.index');
+    $trail->push('Yeni', route('hotels.create'));
+});
+
+// Home > Hotels > Edit
+Breadcrumbs::for('hotels.edit', function ($trail, $flight) {
+    $trail->parent('hotels.index');
+    $trail->push('Redaktə', route('hotels.edit', $flight->id));
+});

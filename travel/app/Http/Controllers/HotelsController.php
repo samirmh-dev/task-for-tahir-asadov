@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class HotelsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => []]);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,8 @@ class HotelsController extends Controller
      */
     public function index()
     {
-        //
+        $hotels = Hotel::all();
+        return view('hotels/index', compact('hotels'));
     }
 
     /**
@@ -24,7 +31,7 @@ class HotelsController extends Controller
      */
     public function create()
     {
-        //
+        return view('hotels/create');
     }
 
     /**
@@ -35,7 +42,18 @@ class HotelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title'       => 'required|max:255',
+            'star'        => 'required|numeric',
+            'city'        => 'required|max:255',
+            'address'     => 'required|max:255',
+            'price'       => 'required|numeric',
+            'description' => 'required|max:2048',
+        ]);
+
+        Hotel::create($data);
+
+        return redirect('hotels')->with('success', 'Otel əlavə edildi!');
     }
 
     /**
@@ -57,7 +75,7 @@ class HotelsController extends Controller
      */
     public function edit(Hotel $hotel)
     {
-        //
+        return view('hotels.edit', compact('hotel'));
     }
 
     /**
@@ -69,7 +87,18 @@ class HotelsController extends Controller
      */
     public function update(Request $request, Hotel $hotel)
     {
-        //
+        $data = $request->validate([
+            'title'       => 'required|max:255',
+            'star'        => 'required|numeric',
+            'city'        => 'required|max:255',
+            'address'     => 'required|max:255',
+            'price'       => 'required|numeric',
+            'description' => 'required|max:2048',
+        ]);
+
+        $hotel->update($data);
+
+        return redirect('hotels')->with('success', 'Dəyişikliklər yadda saxlanıldı!');
     }
 
     /**
@@ -80,6 +109,7 @@ class HotelsController extends Controller
      */
     public function destroy(Hotel $hotel)
     {
-        //
+        $hotel->delete();
+        return redirect('hotels')->with('success', 'Otel silindi!');
     }
 }

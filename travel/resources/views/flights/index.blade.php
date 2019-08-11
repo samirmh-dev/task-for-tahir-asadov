@@ -8,7 +8,7 @@
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">şirkətin adı</th>
+        <th scope="col">Şirkətin adı</th>
         <th scope="col">Təyyarə</th>
         <th scope="col">Eniş tarixi</th>
         <th scope="col">Qiymət</th>

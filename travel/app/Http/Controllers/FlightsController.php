@@ -23,7 +23,6 @@ class FlightsController extends Controller
 
         $flights = Flight::all();
         return view('flights/index', compact('flights'));
-        //
     }
 
     /**
