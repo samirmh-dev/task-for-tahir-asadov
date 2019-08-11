@@ -51,7 +51,11 @@ class HotelsController extends Controller
             'description' => 'required|max:2048',
         ]);
 
-        Hotel::create($data);
+        $hotel = Hotel::create($data);
+
+        foreach ($request->input('document', []) as $file) {
+            $hotel->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');
+        }
 
         return redirect('hotels')->with('success', 'Otel əlavə edildi!');
     }
@@ -112,4 +116,9 @@ class HotelsController extends Controller
         $hotel->delete();
         return redirect('hotels')->with('success', 'Otel silindi!');
     }
+
+    public function upload(){
+        
+    }
+
 }

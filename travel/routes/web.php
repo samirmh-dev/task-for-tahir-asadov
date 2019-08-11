@@ -19,4 +19,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('flights', 'FlightsController');
 Route::resource('hotels', 'HotelsController');
 
+Route::post('medias/store', 'MediasController@store')->name('medias.store');
+
 Route::get('/dashboard', 'FlightsController@index')->name('dashboard');

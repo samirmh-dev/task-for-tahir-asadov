@@ -76,6 +76,9 @@
         <div class="col-lg">
             <div class="form-group">
                 <label for="image">Şəkil: <span class="tx-danger">*</span></label>
+                <div class="needsclick dropzone" id="document-dropzone">
+
+                </div>
                 <input type="text" value="{{ old('image') }}"  class="form-control @if ($errors->has('image')) is-invalid @endif" name="image" id="image" placeholder="Şirkətin adı">
                 <div class="invalid-feedback">
                     @if ($errors->has('image')) <p style="color:red;">{{ $errors->first('image') }}</p> @endif
@@ -93,3 +96,42 @@
 </form>
 
 @endsection
+@section('scripts')
+<script>
+  var uploadedDocumentMap = {}
+  Dropzone.options.documentDropzone = {
+    url: '{{ route('medias.store') }}',
+    maxFilesize: 2, // MB
+    addRemoveLinks: true,
+    headers: {
+      'X-CSRF-TOKEN': "{{ csrf_token() }}"
+    },
+    success: function (file, response) {
+      $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+      uploadedDocumentMap[file.name] = response.name
+    },
+    removedfile: function (file) {
+      file.previewElement.remove()
+      var name = ''
+      if (typeof file.file_name !== 'undefined') {
+        name = file.file_name
+      } else {
+        name = uploadedDocumentMap[file.name]
+      }
+      $('form').find('input[name="document[]"][value="' + name + '"]').remove()
+    },
+    init: function () {
+      @if(isset($project) && $project->document)
+        var files =
+          {!! json_encode($project->document) !!}
+        for (var i in files) {
+          var file = files[i]
+          this.options.addedfile.call(this, file)
+          file.previewElement.classList.add('dz-complete')
+          $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
+        }
+      @endif
+    }
+  }
+</script>
+@stop

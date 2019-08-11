@@ -37,7 +37,19 @@
     <link href="{{ asset('lib/admin/rickshaw/css/rickshaw.min.css') }}" rel="stylesheet">
 
     <!-- Slim CSS -->
-  <link rel="stylesheet" href="{{ asset('css/admin/slim.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/slim.css') }}">
+
+    {{-- CSS assets in head section --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+
+    {{-- ... a lot of main HTML code ... --}}
+
+    {{-- JS assets at the bottom --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+    {{-- ...Some more scripts... --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    @yield('scripts')
 
   </head>
   <body>
