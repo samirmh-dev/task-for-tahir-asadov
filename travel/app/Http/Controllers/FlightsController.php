@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class FlightsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => []]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +20,9 @@ class FlightsController extends Controller
      */
     public function index()
     {
+
+        $flights = Flight::all();
+        return view('flights/index', compact('flights'))->with('status', 'Post deleted!');
         //
     }
 
@@ -37,19 +46,19 @@ class FlightsController extends Controller
     {
         
         $data = $request->validate([
-            'company' => 'required|max:255',
-            'plane' => 'required|max:255',
-            'arrival' => 'required|date',
-            'price' => 'required|numeric',
-            'from' => 'required|max:255',
-            'to' => 'required|max:255',
-            'passenger' => 'required|numeric',
+            'company'     => 'required|max:255' ,
+            'plane'       => 'required|max:255' ,
+            'arrival'     => 'required|date'    ,
+            'price'       => 'required|numeric' ,
+            'from'        => 'required|max:255' ,
+            'to'          => 'required|max:255' ,
+            'passenger'   => 'required|numeric' ,
             'description' => 'required|max:2048',
         ]);
 
         Flight::create($data);
 
-        return redirect('flights')->with('status', 'Ucus elave edildi!');
+        return redirect('flights')->with('success', 'Uçuş əlavə edildi!');
     }
 
     /**
@@ -71,7 +80,7 @@ class FlightsController extends Controller
      */
     public function edit(Flight $flight)
     {
-        //
+        return view('flights.edit', compact('flight'));
     }
 
     /**
@@ -83,7 +92,21 @@ class FlightsController extends Controller
      */
     public function update(Request $request, Flight $flight)
     {
-        //
+        
+        $data = $request->validate([
+            'company'     => 'required|max:255' ,
+            'plane'       => 'required|max:255' ,
+            'arrival'     => 'required|date'    ,
+            'price'       => 'required|numeric' ,
+            'from'        => 'required|max:255' ,
+            'to'          => 'required|max:255' ,
+            'passenger'   => 'required|numeric' ,
+            'description' => 'required|max:2048',
+        ]);
+
+        $flight->update($data);
+
+        return redirect('flights')->with('success', 'Dəyişikliklər yadda saxlanıldı!');
     }
 
     /**
@@ -94,6 +117,7 @@ class FlightsController extends Controller
      */
     public function destroy(Flight $flight)
     {
-        //
+        $flight->delete();
+        return redirect('flights')->with('success', 'Uçuş silindi!');
     }
 }
