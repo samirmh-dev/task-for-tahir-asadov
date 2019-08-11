@@ -22,7 +22,7 @@ class FlightsController extends Controller
     {
 
         $flights = Flight::all();
-        return view('flights/index', compact('flights'))->with('status', 'Post deleted!');
+        return view('flights/index', compact('flights'));
         //
     }
 
