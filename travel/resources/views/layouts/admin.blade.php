@@ -76,22 +76,22 @@
     <div class="slim-navbar">
       <div class="container">
         <ul class="nav">
-          <li class="nav-item active">
+          <li class="nav-item {{ (request()->is('dashboard')) ? 'active' : '' }}">
             <a class="nav-link" href="/dashboard">
-              <i class="icon ion-ios-home-outline"></i>
+              <i class="icon ion-ios-speedometer"></i>
               <span>İdarə paneli</span>
             </a>
           </li>
-          <li class="nav-item mega-dropdown">
+          <li class="nav-item {{ (request()->is('flights')) ? 'active' : '' }}">
             <a class="nav-link" href="/flights">
-              <i class="icon ion-plane"></i>
+              <i class="icon ion-plane" ></i>
               <span>Uçuşlar</span>
             </a>
           </li>
           <li class="nav-item with-sub">
-            <a class="nav-link" href="#">
-              <i class="icon ion-ios-book-outline"></i>
-              <span>Pages</span>
+            <a class="nav-link {{ (request()->is('hotels')) ? 'active' : '' }}" href="#">
+              <i class="fa fa-bed" style="font-size: 19px;">&nbsp;</i>
+              <span>Otellər</span>
             </a>
             <div class="sub-item">
               <ul>
@@ -174,10 +174,7 @@
       <div class="container">
 
         <div class="slim-pageheader">
-          <ol class="breadcrumb slim-breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-          </ol>
+          {{ Breadcrumbs::render() }}
           <h6 class="slim-pagetitle">@yield('title')</h6>
         </div><!-- slim-pageheader -->
 
