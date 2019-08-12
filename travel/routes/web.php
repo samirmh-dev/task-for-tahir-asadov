@@ -13,6 +13,7 @@
 
 Auth::routes();
 
+Route::get('/home', 'AppController@index')->name('home');
 Route::get('/', 'AppController@index')->name('front');
 
 Route::resource('flights', 'FlightsController');

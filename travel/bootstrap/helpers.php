@@ -12,3 +12,11 @@ if (!function_exists('classActivePath')) {
         return '';
     }
 }
+
+
+function autoIncrement()
+{
+    for ($i = 0; $i < 1000; $i++) {
+        yield $i;
+    }
+}

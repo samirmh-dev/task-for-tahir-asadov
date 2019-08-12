@@ -21,15 +21,6 @@ class HotelsController extends Controller
     public function index()
     {
         $hotels = Hotel::all();
-        foreach ($hotels as $key => $hotel) {
-            if(isset($mediaitems[0])){
-                dump($hotel);
-                dump($mediaitems);
-                $publicUrl = $mediaitems[0]->getUrl();
-                dump($mediaitems);
-
-            }
-        }
         return view('hotels/index', compact('hotels'));
     }
 
