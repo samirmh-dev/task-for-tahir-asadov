@@ -15,6 +15,8 @@ Auth::routes();
 
 Route::get('/home', 'AppController@index')->name('home');
 Route::get('/', 'AppController@index')->name('front');
+Route::get('/flights/result', 'AppController@flights_result')->name('flights.result');
+Route::get('/hotels/result', 'AppController@hotels_result')->name('hotels.result');
 
 Route::resource('flights', 'FlightsController');
 Route::resource('hotels', 'HotelsController');

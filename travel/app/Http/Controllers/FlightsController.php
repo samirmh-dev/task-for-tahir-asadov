@@ -10,7 +10,7 @@ class FlightsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => []]);
+        $this->middleware('auth', ['except' => ['result']]);
     }
 
     /**
@@ -124,6 +124,5 @@ class FlightsController extends Controller
     {
         return view('dashboard');
     }
-
     
 }

@@ -63,6 +63,12 @@
                                     </a>
                                 @endif
                             </div>
+                            <div class="col-md-8 offset-md-4 mt-4">
+                                @if ($errors->has('g-recaptcha-response'))
+                                <p style="color:red;">ReCAPTHCA error</p>
+                                @endif
+                                {!! htmlFormSnippet() !!}
+                            </div>
                         </div>
                     </form>
                 </div>

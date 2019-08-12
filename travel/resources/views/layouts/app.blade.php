@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Laravel reCAPTCHA -->
+    {!! htmlScriptTagJsApi(/* $formId - INVISIBLE version only */) !!}
 </head>
 <body>
     <div id="app">

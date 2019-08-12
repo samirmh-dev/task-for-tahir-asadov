@@ -88,6 +88,12 @@
     <div class="slim-navbar">
       <div class="container">
         <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="/">
+              <i class="icon ion-ios-home"></i>
+              <span>Ön səhifə</span>
+            </a>
+          </li>
           <li class="nav-item {{ classActivePath('dashboard') }}">
             <a class="nav-link" href="/dashboard">
               <i class="icon ion-ios-speedometer"></i>

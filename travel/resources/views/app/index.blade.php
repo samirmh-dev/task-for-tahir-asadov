@@ -36,32 +36,32 @@
                                     <h4 class="fleft">Book your Flights</h4>
                                     <div class="clear"></div>
                                 </div>
-                                <form action="#" method="post" class="nobottommargin">
+                                <form action="/flights/result" method="get" class="nobottommargin">
                                     <div class="row">
                                         <div class="col-md-6 col-12 bottommargin-sm">
                                             <label for="">From</label>
-                                            <input type="text" value="" class="sm-form-control" placeholder="Eg. Melbourne, Australia">
+                                            <input type="text" name="from" value="" class="sm-form-control" placeholder="Eg. Melbourne, Australia">
                                         </div>
                                         <div class="col-md-6 col-12 bottommargin-sm">
                                             <label for="">To</label>
-                                            <input type="text" value="" class="sm-form-control" placeholder="Eg. New York, United States">
+                                            <input type="text" name="to" value="" class="sm-form-control" placeholder="Eg. New York, United States">
                                         </div>
                                         <div class="clear"></div>
                                         <div class="input-daterange travel-date-group col-md-9 bottommargin-sm">
                                             <div class="row">
                                                 <div class="col-md-6 col-6">
                                                     <label for="">Departure</label>
-                                                    <input type="text" value="" class="sm-form-control tleft" name="start" placeholder="MM/DD/YYYY">
+                                                    <input type="text" name="departure" value="" class="sm-form-control tleft" name="start" placeholder="MM/DD/YYYY">
                                                 </div>
                                                 <div class="col-md-6 col-6">
                                                     <label for="">Return</label>
-                                                    <input type="text" value="" class="sm-form-control tleft" name="end" placeholder="MM/DD/YYYY">
+                                                    <input type="text" name="return" value="" class="sm-form-control tleft" name="end" placeholder="MM/DD/YYYY">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3 bottommargin-sm">
                                             <label for="">Adults</label>
-                                            <input type="number" min="1" max="10" value="" class="sm-form-control" name="end" placeholder="2">
+                                            <input type="number" min="1" name="adults" max="10" value="" class="sm-form-control" name="end" placeholder="2">
                                         </div>
                                         <div class="col-md-12">
                                             <button class="button button-3d nomargin rightmargin-sm">Search Flights</button>
@@ -74,27 +74,27 @@
                                     <h4 class="fleft">Book your Hotels</h4>
                                     <div class="clear"></div>
                                 </div>
-                                <form action="#" method="post" class="nobottommargin">
+                                <form action="/hotels/result" method="get" class="nobottommargin">
                                     <div class="row">
                                         <div class="col-md-12 bottommargin-sm">
                                             <label for="">City</label>
-                                            <input type="text" value="" class="sm-form-control" placeholder="Eg. Melbourne, Australia">
+                                            <input type="text" name="city" class="sm-form-control" placeholder="Eg. Melbourne, Australia">
                                         </div>
                                         <div class="input-daterange travel-date-group col-md-9 bottommargin-sm">
                                             <div class="row">
                                                 <div class="col-md-6 col-6">
                                                     <label for="">Departure</label>
-                                                    <input type="text" value="" class="sm-form-control tleft" name="start" placeholder="MM/DD/YYYY">
+                                                    <input type="text" name="departure" class="sm-form-control tleft" name="start" placeholder="MM/DD/YYYY">
                                                 </div>
                                                 <div class="col-md-6 col-6">
                                                     <label for="">Return</label>
-                                                    <input type="text" value="" class="sm-form-control tleft" name="end" placeholder="MM/DD/YYYY">
+                                                    <input type="text" name="return" class="sm-form-control tleft" name="end" placeholder="MM/DD/YYYY">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3 bottommargin-sm">
                                             <label for="">Rooms</label>
-                                            <input type="number" min="1" max="10" value="" class="sm-form-control" name="end" placeholder="2">
+                                            <input type="number" min="1" max="10" name="rooms" class="sm-form-control" name="end" placeholder="2">
                                         </div>
                                         <div class="col-md-12">
                                             <button class="button button-3d nomargin rightmargin-sm">Search Hotels</button>

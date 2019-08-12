@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use \Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -36,4 +38,25 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
+    public function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'g-recaptcha-response' => 'recaptcha',
+        ]);
+    }
+
+
+
+    // public function login()
+    // {
+    //     $creds = Validator::make(request()->all(), [
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    //         'password' => ['required', 'string', 'min:6', 'confirmed'],
+    //         'g-recaptcha-response' => 'recaptcha',
+    //     ]);
+
+    // }
 }
