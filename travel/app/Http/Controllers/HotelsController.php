@@ -21,6 +21,15 @@ class HotelsController extends Controller
     public function index()
     {
         $hotels = Hotel::all();
+        foreach ($hotels as $key => $hotel) {
+            if(isset($mediaitems[0])){
+                dump($hotel);
+                dump($mediaitems);
+                $publicUrl = $mediaitems[0]->getUrl();
+                dump($mediaitems);
+
+            }
+        }
         return view('hotels/index', compact('hotels'));
     }
 
@@ -53,8 +62,8 @@ class HotelsController extends Controller
 
         $hotel = Hotel::create($data);
 
-        foreach ($request->input('document', []) as $file) {
-            $hotel->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');
+        foreach ($request->input('image', []) as $file) {
+            $hotel->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('image');
         }
 
         return redirect('hotels')->with('success', 'Otel əlavə edildi!');
@@ -79,7 +88,8 @@ class HotelsController extends Controller
      */
     public function edit(Hotel $hotel)
     {
-        return view('hotels.edit', compact('hotel'));
+        $images = $hotel->getMedia('image');
+        return view('hotels.edit', compact(['hotel', 'images']));
     }
 
     /**
@@ -101,7 +111,9 @@ class HotelsController extends Controller
         ]);
 
         $hotel->update($data);
-
+        foreach ($request->input('image', []) as $file) {
+            $hotel->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('image');
+        }
         return redirect('hotels')->with('success', 'Dəyişikliklər yadda saxlanıldı!');
     }
 

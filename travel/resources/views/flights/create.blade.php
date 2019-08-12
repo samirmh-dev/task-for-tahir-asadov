@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Yeni uçuş əlavə et');
+@section('title', 'Yeni uçuş əlavə et')
 
 @section('content')
 

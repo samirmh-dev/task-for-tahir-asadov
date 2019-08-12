@@ -119,4 +119,11 @@ class FlightsController extends Controller
         $flight->delete();
         return redirect('flights')->with('success', 'Uçuş silindi!');
     }
+
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
+
+    
 }

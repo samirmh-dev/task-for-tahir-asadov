@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Oteli redaktə et');
+@section('title', 'Oteli redaktə et')
 
 @section('content')
 
@@ -75,17 +75,24 @@
     <div class="row">
         <div class="col-lg">
             <div class="form-group">
-                <label for="image">Şəkil: <span class="tx-danger">*</span></label>
-                <input type="text" value="{{ old('image', $hotel['image']) }}"  class="form-control @if ($errors->has('image')) is-invalid @endif" name="image" id="image" placeholder="Şirkətin adı">
-                <div class="invalid-feedback">
-                    @if ($errors->has('image')) <p style="color:red;">{{ $errors->first('image') }}</p> @endif
+                <div class="needsclick dropzone" id="document-dropzone">
+
                 </div>
             </div><!-- form-group -->
+            <div class="row">
+                @forelse ($images as $image)
+                    <div class="col-lg">
+                        <img style="width: 100%;" src="{{ $image->getFullUrl() }}" alt="">
+                    </div><!-- col-lg -->    
+                @empty
+            </div><!-- row -->
+                
+            @endforelse
         </div><!-- col-lg -->
 
         <div class="col-lg">
             <div class="form-group">
-                <input type="submit" class="form-control btn btn-primary mt-4" value="Elave et">
+                <input type="submit" class="form-control btn btn-primary mt-4" value="Yadda saxla">
             </div><!-- form-group -->
         </div><!-- col-lg -->
     </div><!-- row -->
@@ -93,3 +100,43 @@
 </form>
 
 @endsection
+
+@section('scripts')
+<script>
+  var uploadedDocumentMap = {}
+  Dropzone.options.documentDropzone = {
+    url: '{{ route('medias.store') }}',
+    maxFilesize: 2, // MB
+    addRemoveLinks: true,
+    headers: {
+      'X-CSRF-TOKEN': "{{ csrf_token() }}"
+    },
+    success: function (file, response) {
+      $('form').append('<input type="hidden" name="image[]" value="' + response.name + '">')
+      uploadedDocumentMap[file.name] = response.name
+    },
+    removedfile: function (file) {
+      file.previewElement.remove()
+      var name = ''
+      if (typeof file.file_name !== 'undefined') {
+        name = file.file_name
+      } else {
+        name = uploadedDocumentMap[file.name]
+      }
+      $('form').find('input[name="image[]"][value="' + name + '"]').remove()
+    },
+    init: function () {
+      @if(isset($project) && $project->image)
+        var files =
+          {!! json_encode($project->image) !!}
+        for (var i in files) {
+          var file = files[i]
+          this.options.addedfile.call(this, file)
+          file.previewElement.classList.add('dz-complete')
+          $('form').append('<input type="hidden" name="image[]" value="' + file.file_name + '">')
+        }
+      @endif
+    }
+  }
+</script>
+@stop

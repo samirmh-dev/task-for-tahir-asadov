@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Yeni otel əlavə et');
+@section('title', 'Yeni otel əlavə et')
 
 @section('content')
 
@@ -75,20 +75,15 @@
     <div class="row">
         <div class="col-lg">
             <div class="form-group">
-                <label for="image">Şəkil: <span class="tx-danger">*</span></label>
                 <div class="needsclick dropzone" id="document-dropzone">
 
-                </div>
-                <input type="text" value="{{ old('image') }}"  class="form-control @if ($errors->has('image')) is-invalid @endif" name="image" id="image" placeholder="Şirkətin adı">
-                <div class="invalid-feedback">
-                    @if ($errors->has('image')) <p style="color:red;">{{ $errors->first('image') }}</p> @endif
                 </div>
             </div><!-- form-group -->
         </div><!-- col-lg -->
 
         <div class="col-lg">
             <div class="form-group">
-                <input type="submit" class="form-control btn btn-primary mt-4" value="Elave et">
+                <input type="submit" class="form-control btn btn-primary mt-4" value="Əlavə et">
             </div><!-- form-group -->
         </div><!-- col-lg -->
     </div><!-- row -->
@@ -107,7 +102,7 @@
       'X-CSRF-TOKEN': "{{ csrf_token() }}"
     },
     success: function (file, response) {
-      $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+      $('form').append('<input type="hidden" name="image[]" value="' + response.name + '">')
       uploadedDocumentMap[file.name] = response.name
     },
     removedfile: function (file) {
@@ -118,17 +113,17 @@
       } else {
         name = uploadedDocumentMap[file.name]
       }
-      $('form').find('input[name="document[]"][value="' + name + '"]').remove()
+      $('form').find('input[name="image[]"][value="' + name + '"]').remove()
     },
     init: function () {
-      @if(isset($project) && $project->document)
+      @if(isset($project) && $project->image)
         var files =
-          {!! json_encode($project->document) !!}
+          {!! json_encode($project->image) !!}
         for (var i in files) {
           var file = files[i]
           this.options.addedfile.call(this, file)
           file.previewElement.classList.add('dz-complete')
-          $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
+          $('form').append('<input type="hidden" name="image[]" value="' + file.file_name + '">')
         }
       @endif
     }

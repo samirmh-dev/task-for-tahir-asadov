@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Uçuşu redaktə et');
+@section('title', 'Uçuşu redaktə et')
 
 @section('content')
 

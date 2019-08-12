@@ -94,17 +94,31 @@
               <span>İdarə paneli</span>
             </a>
           </li>
-          <li class="nav-item {{ classActivePath('flights') }}">
+          <li class="nav-item {{ classActivePath('flights') }} with-sub">
             <a class="nav-link" href="/flights">
               <i class="icon ion-plane" ></i>
               <span>Uçuşlar</span>
             </a>
+            <div class="sub-item">
+              <ul>
+                <li>
+                  <a href="/flights/create">Uçuş əlavə et</a>
+                </li>
+              </ul>
+            </div><!-- sub-item -->
           </li>
-          <li class="nav-item  {{ classActivePath('hotels') }}">
+          <li class="nav-item  {{ classActivePath('hotels') }} with-sub">
             <a class="nav-link" href="/hotels">
               <i class="icon fa fa-bed"></i>
               <span>Otellər</span>
             </a>
+            <div class="sub-item">
+              <ul>
+                <li>
+                  <a href="/hotels/create">Otel əlavə et</a>
+                </li>
+              </ul>
+            </div><!-- sub-item -->
           </li>
         </ul>
       </div><!-- container -->
