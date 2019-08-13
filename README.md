@@ -73,10 +73,3 @@ Göstərilməsi vacib olan bölmələrin siyahısı:
  7. Hotelin təklif etdiyi imkanlar (Wifi, Bar, Air Conditioner, Restaurant, Gym, Room service,  Cafe)
  
  Həmçinin bu bölmədə də səhifələmə əlavə edilməlidir.
-
-
-
-composer install
-php artisan migrate:fresh --seed
-php artisan storage:link
-php artisan serv
